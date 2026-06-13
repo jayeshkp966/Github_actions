@@ -1,0 +1,15 @@
+name: First Workflow of 2026
+on:
+    push:
+        branches: ['main']
+jobs:
+    stage1:
+        runs_on: ['ubuntu-latest']
+        steps:
+            - uses: actions/checkout@4
+            - name: Running the first Github cmd
+              run:  echo This is Chiti, the Robo...
+            - name: Running multi line code
+              run: |
+                echo This is the multi line block
+                echo still in multi line block 
