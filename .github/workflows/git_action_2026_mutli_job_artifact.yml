@@ -1,0 +1,24 @@
+name: workflow with the multiple jobs without artifacts
+on: 
+    push:
+        branches: ['main']
+jobs:
+    job_stage1:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout the git code
+              uses: actions/checkout@v6
+            - name: Installting the package via script file
+              run: |
+               chmod +x shell_script.sh
+               ./shell_script.sh
+            
+    job_stage2: 
+        needs: job_stage1
+        runs-on: ubuntu-latest
+        steps:
+            - name: read the file generated in the first job
+              run: cat text.txt
+            
+
+              
