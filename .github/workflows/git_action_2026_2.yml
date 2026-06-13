@@ -1,0 +1,18 @@
+name: shell script with workflow
+on:
+    push:
+        branches: ['main']
+jobs:
+    shell_script_execution:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Cloning the repo
+              uses: actions/checkout@v4
+            - name: display the directory
+              run: ls -lrt
+            - name: providing the permission to the script
+              run: |
+                chmod +x shell_script.sh
+                ./shell_script.sh
+            - name: run and check the cowsay file contains 
+              run: cat text.txt
