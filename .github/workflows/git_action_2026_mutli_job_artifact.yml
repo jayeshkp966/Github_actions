@@ -1,4 +1,4 @@
-name: workflow with the multiple jobs without artifacts
+name: workflow with the multiple jobs with artifacts
 on: 
     push:
         branches: ['main']
@@ -12,11 +12,22 @@ jobs:
               run: |
                chmod +x shell_script.sh
                ./shell_script.sh
-            
+            - name: upload the artifact
+              uses: actions/upload-artifact@v7
+              with:
+                name: shell-out
+                path: text.txt
+
     job_stage2: 
         needs: job_stage1
         runs-on: ubuntu-latest
         steps:
+            - name: download the artifact
+              uses: actions/download-artifact@v7
+              with:
+                name: shell-out
+                # path: text.txt
+
             - name: read the file generated in the first job
               run: cat text.txt
             
